@@ -3,6 +3,7 @@
   <id type="desktop">org.libsdl.Maelstrom.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+ and CC-BY-3.0</project_license>
+  <developer_name>Ambrosia Software</developer_name>
   <name>Maelstrom</name>
   <summary>High Quality Asteroids Clone</summary>
   <description>
