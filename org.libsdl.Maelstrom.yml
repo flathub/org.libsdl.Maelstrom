@@ -1,20 +1,18 @@
 app-id: org.libsdl.Maelstrom
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: maelstrom
 
 finish-args:
   - --device=dri
   - --share=ipc
-  - --share=network
   - --socket=fallback-x11
   - --socket=wayland
   - --socket=pulseaudio
 
 modules:
   - name: maelstrom
-    buildsystem: autotools
     post-install:
       - install -d ${FLATPAK_DEST}/bin
       - ln -sf ${FLATPAK_DEST}/games/Maelstrom/Maelstrom ${FLATPAK_DEST}/bin/maelstrom
@@ -31,7 +29,9 @@ modules:
           stable-only: true
           url-template: https://www.libsdl.org/projects/Maelstrom/src/Maelstrom-$version.tar.gz
       - type: patch
-        path: struct-button-typedef.patch
+        paths:
+          - patches/fix-implicit-function-declaration.patch
+          - patches/struct-button-typedef.patch
       - type: shell
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
