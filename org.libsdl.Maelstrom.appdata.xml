@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">org.libsdl.Maelstrom.desktop</id>
+<component type="desktop-application">
+  <id>org.libsdl.Maelstrom</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+ and CC-BY-3.0</project_license>
   <developer_name>Ambrosia Software</developer_name>
@@ -12,7 +12,15 @@
     <p>The lovely Stratocaster R&amp;R facility never sounded so good, but as you fire full thrusters to dodge the latest barrage you begin to think you'll never get home...</p>
   </description>
   <content_rating type="oars-1.1" />
+  <provides>
+    <id>org.libsdl.Maelstrom.desktop</id>
+  </provides>
+  <replaces>
+    <id>org.libsdl.Maelstrom.desktop</id>
+  </replaces>
+  <launchable type="desktop-id">org.libsdl.Maelstrom.desktop</launchable>
   <url type="homepage">https://www.libsdl.org/projects/Maelstrom/</url>
+  <url type="vcs-browser">https://www.libsdl.org/projects/Maelstrom/source.html</url>
   <screenshots>
     <screenshot type="default">
       <image>https://upload.wikimedia.org/wikipedia/commons/4/44/Maelstrom_screenshot.png</image>
@@ -21,4 +29,4 @@
   <releases>
     <release version="3.0.7" date="2021-02-04"/>
   </releases>
-</application>
+</component>
