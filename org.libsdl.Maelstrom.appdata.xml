@@ -20,7 +20,7 @@
   </replaces>
   <launchable type="desktop-id">org.libsdl.Maelstrom.desktop</launchable>
   <url type="homepage">https://www.libsdl.org/projects/Maelstrom/</url>
-  <url type="vcs-browser">https://www.libsdl.org/projects/Maelstrom/source.html</url>
+  <url type="vcs-browser">https://github.com/libsdl-org/Maelstrom</url>
   <screenshots>
     <screenshot type="default">
       <image>https://upload.wikimedia.org/wikipedia/commons/4/44/Maelstrom_screenshot.png</image>
