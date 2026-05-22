@@ -14,13 +14,14 @@ cleanup:
 modules:
   - name: maelstrom
     buildsystem: cmake-ninja
-      # config-opts:
+    config-opts:
+      - -DSTEAM=OFF
       # Require SDL 3.4.2, therefore disabled
       # - -DUSE_VENDORED_SDL=false
     post-install:
       - mkdir -p ${FLATPAK_DEST}/{bin,lib}
       - mv ${FLATPAK_DEST}/Maelstrom ${FLATPAK_DEST}/bin/maelstrom
-      - mv ${FLATPAK_DEST}/{libSDL3.*,libsteam_api.so} ${FLATPAK_DEST}/lib/
+      - mv ${FLATPAK_DEST}/libSDL3.* ${FLATPAK_DEST}/lib/
       - install -Dm644 org.libsdl.Maelstrom.png -t ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/
       - install -Dm644 org.libsdl.Maelstrom.desktop -t ${FLATPAK_DEST}/share/applications/
       - install -Dm644 org.libsdl.Maelstrom.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/
