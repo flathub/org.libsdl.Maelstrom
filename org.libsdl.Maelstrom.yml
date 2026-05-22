@@ -3,38 +3,37 @@ runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: maelstrom
-
 finish-args:
   - --device=dri
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
   - --socket=pulseaudio
-
+cleanup:
+  - /Docs
 modules:
   - name: maelstrom
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DSTEAM=OFF
+      # Require SDL 3.4.2, therefore disabled
+      # - -DUSE_VENDORED_SDL=false
     post-install:
-      - install -d ${FLATPAK_DEST}/bin
-      - ln -sf ${FLATPAK_DEST}/games/Maelstrom/Maelstrom ${FLATPAK_DEST}/bin/maelstrom
-      - install -Dm644 org.libsdl.Maelstrom.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/org.libsdl.Maelstrom.png
-      - install -Dm644 org.libsdl.Maelstrom.desktop ${FLATPAK_DEST}/share/applications/org.libsdl.Maelstrom.desktop
-      - install -Dm644 org.libsdl.Maelstrom.appdata.xml ${FLATPAK_DEST}/share/appdata/org.libsdl.Maelstrom.appdata.xml
+      - mkdir -p ${FLATPAK_DEST}/{bin,lib}
+      - mv ${FLATPAK_DEST}/Maelstrom ${FLATPAK_DEST}/bin/maelstrom
+      - mv ${FLATPAK_DEST}/libSDL3.* ${FLATPAK_DEST}/lib/
+      - install -Dm644 org.libsdl.Maelstrom.png -t ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/
+      - install -Dm644 org.libsdl.Maelstrom.desktop -t ${FLATPAK_DEST}/share/applications/
+      - install -Dm644 org.libsdl.Maelstrom.appdata.xml -t ${FLATPAK_DEST}/share/metainfo/
     sources:
       - type: archive
-        url: https://www.libsdl.org/projects/Maelstrom/src/Maelstrom-3.0.7.tar.gz
-        sha256: 93680322f4b04d4727ea8e0b461f259b604dc69e7465cb91d2b9aad378a9a036
+        url: https://github.com/libsdl-org/Maelstrom/releases/download/release-4.0.1/Maelstrom-4.0.1.tar.gz
+        sha256: d75adce9a0a5fc99309a7e4230d23815c2d79d54dbb4bdb0c5c04b1abf47c96a
         x-checker-data:
           type: anitya
           project-id: 9974
           stable-only: true
-          url-template: https://www.libsdl.org/projects/Maelstrom/src/Maelstrom-$version.tar.gz
-      - type: patch
-        paths:
-          - patches/fix-implicit-function-declaration.patch
-          - patches/struct-button-typedef.patch
-      - type: shell
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
+          url-template: https://github.com/libsdl-org/Maelstrom/releases/download/release-$version/Maelstrom-$version.tar.gz
       - type: file
         path: org.libsdl.Maelstrom.desktop
       - type: file
