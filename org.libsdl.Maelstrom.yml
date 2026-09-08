@@ -1,6 +1,6 @@
 app-id: org.libsdl.Maelstrom
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: Maelstrom
 finish-args:
@@ -19,8 +19,7 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR=${FLATPAK_DEST}/lib/
       - -DCMAKE_INSTALL_DOCDIR=${FLATPAK_DEST}/share/docs/Maelstrom/
       - -DGAME_INSTALL_DATADIR=${FLATPAK_DEST}/share/Maelstrom/
-      # Require SDL 3.4.2, therefore disabled
-      # - -DUSE_VENDORED_SDL=false
+      - -DUSE_VENDORED_SDL=false
     post-install:
       - install -Dm644 org.libsdl.Maelstrom.png -t ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/
       - install -Dm644 org.libsdl.Maelstrom.desktop -t ${FLATPAK_DEST}/share/applications/
@@ -30,8 +29,8 @@ modules:
       - /share/Maelstrom/Data/Steam
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/Maelstrom/releases/download/release-4.0.1/Maelstrom-4.0.1.tar.gz
-        sha256: d75adce9a0a5fc99309a7e4230d23815c2d79d54dbb4bdb0c5c04b1abf47c96a
+        url: https://github.com/libsdl-org/Maelstrom/releases/download/release-4.0.2/Maelstrom-4.0.2.tar.gz
+        sha256: ec12ab3d5ffb53db3d2246766cbc227b8ad681e879c330ef5beb451328d18cea
         x-checker-data:
           type: anitya
           project-id: 9974
